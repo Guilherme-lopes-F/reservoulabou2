@@ -1,0 +1,73 @@
+<h1>Reservas de Laboratórios</h1>
+
+<div class="top-bar">
+
+    <a href="/reservas/laboratorios/novo" class="btn">
+
+        Nova Reserva
+
+    </a>
+
+</div>
+
+<table>
+
+    <thead>
+
+        <tr>
+
+            <th>Laboratório</th>
+            <th>Usuário</th>
+            <th>Data</th>
+            <th>Entrada</th>
+            <th>Saída</th>
+            <th>Pessoas</th>
+            <th>Ações</th>
+
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+    {{#each reservas}}
+
+        <tr>
+
+            <td>{{Laboratorio.NomeLab}}</td>
+
+            <td>{{Usuario.Login}}</td>
+
+            <td>{{DataReserva}}</td>
+
+            <td>{{HoraEntrada}}</td>
+
+            <td>{{HoraSaida}}</td>
+
+            <td>{{QuantidadePessoas}}</td>
+
+            <td>
+
+                <a href="/reservas/laboratorios/editar/{{IdReservaLab}}">
+
+                    Editar
+
+                </a>
+
+                |
+
+                <a href="/reservas/laboratorios/excluir/{{IdReservaLab}}">
+
+                    Excluir
+
+                </a>
+
+            </td>
+
+        </tr>
+
+    {{/each}}
+
+    </tbody>
+
+</table>

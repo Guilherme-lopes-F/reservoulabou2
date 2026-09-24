@@ -1,0 +1,23 @@
+<h1>Editar Laboratório</h1>
+
+<form action="/laboratorios/editar/{{laboratorio.IdLab}}" method="POST">
+
+    <label>Nome</label>
+
+    <input type="text" name="NomeLab" value="{{laboratorio.NomeLab}}" required>
+
+    <label>Hora Entrada</label>
+
+    <input type="time" name="HoraEntrada" value="{{laboratorio.HoraEntrada}}" required>
+
+    <label>Hora Saída</label>
+
+    <input type="time" name="HoraSaida" value="{{laboratorio.HoraSaida}}" required>
+
+    <button>
+
+        Atualizar
+
+    </button>
+
+</form>

@@ -1,0 +1,101 @@
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #989ea3;
+}
+
+/* Centraliza o login na tela */
+.container-login {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    
+}
+
+/* Cartão do Login */
+.login-box {
+    background-color: #f8f8f8;
+    width: 100%;
+    /* Responsividade fluida */
+    max-width: clamp(280px, 90vw, 450px); 
+    padding: clamp(20px, 5vw, 40px);
+    border-radius: 20px;
+    text-align: center;
+    box-sizing: border-box;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.login-box h2 {
+    font-size: clamp(22px, 2.5vw, 32px);
+    font-weight: 500;
+    color: #111111;
+    margin-bottom: 25px;
+}
+
+.login-box form {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.login-box label {
+    display: block;
+    font-size: 14px;
+    color: #222222;
+    margin-bottom: 6px;
+}
+
+.login-box input {
+    width: 100%;
+    padding: 12px 14px;
+    margin-bottom: 20px;
+    border: 1px solid #e2e2e2;
+    border-radius: 6px;
+    background-color: #ffffff;
+    font-size: 14px;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.login-box input:focus {
+    border-color: #38b6ff;
+}
+
+.login-box button {
+    width: 100%;
+    padding: 12px;
+    background-color: #38b6ff;
+    color: #ffffff;
+    border: none;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.2s;
+}
+
+.login-box button:hover {
+    background-color: #1ea2f1;
+}
+
+.login-box p {
+    margin-top: 18px;
+    font-size: 13px;
+    text-align: center;
+}
+
+.login-box a {
+    color: #38b6ff;
+    text-decoration: none;
+}
+
+.login-box a:hover {
+    text-decoration: underline;
+}

@@ -1,0 +1,113 @@
+<h1>Nova Reserva de Laboratório</h1>
+
+<form action="/reservas/laboratorios/novo" method="POST">
+
+<label>
+
+Laboratório
+
+</label>
+
+<select
+
+name="IdLab"
+
+required
+
+>
+
+<option value="">
+
+Selecione
+
+</option>
+
+{{#each laboratorios}}
+
+<option value="{{IdLab}}">
+
+{{NomeLab}}
+
+</option>
+
+{{/each}}
+
+</select>
+
+<label>
+
+Data
+
+</label>
+
+<input
+
+type="date"
+
+name="DataReserva"
+
+required
+
+>
+
+<label>
+
+Hora Entrada
+
+</label>
+
+<input
+
+type="time"
+
+name="HoraEntrada"
+
+required
+
+>
+
+<label>
+
+Hora Saída
+
+</label>
+
+<input
+
+type="time"
+
+name="HoraSaida"
+
+required
+
+>
+
+<label>
+
+Quantidade de Pessoas
+
+</label>
+
+<input
+
+type="number"
+
+name="QuantidadePessoas"
+
+min="1"
+
+required
+
+>
+
+<button>
+
+Reservar
+
+</button>
+
+</form>
+
+<div id="horariosOcupados"></div>
+
+<script src="/js/reservaLaboratorio.js"></script>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Equipamentos</h1>
+
+    <a class="btn" href="/equipamentos/novo">
+
+        Novo Equipamento
+
+    </a>
+
+    <table>
+
+        <thead>
+
+            <tr>
+
+                <th>ID</th>
+
+                <th>Nome</th>
+
+                <th>Quantidade</th>
+
+                <th>Durabilidade</th>
+
+                <th>Ações</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            {{#each equipamentos}}
+
+            <tr>
+
+                <td>{{IdEquip}}</td>
+
+                <td>{{NomeEquip}}</td>
+
+                <td>{{Quantidade}}</td>
+
+                <td>{{Durabilidade}}</td>
+
+                <td>
+
+                    <a href="/equipamentos/editar/{{IdEquip}}">
+
+                        Editar
+
+                    </a>
+
+                    |
+
+                    <a href="/equipamentos/excluir/{{IdEquip}}">
+
+                        Excluir
+
+                    </a>
+
+                </td>
+
+            </tr>
+
+            {{/each}}
+
+        </tbody>
+
+    </table>
+
+</body>
+
+</html>

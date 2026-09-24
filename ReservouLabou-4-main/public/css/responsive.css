@@ -1,0 +1,67 @@
+@media(max-width:900px){
+
+.navbar{
+
+    flex-direction:column;
+
+    gap:20px;
+
+}
+
+.navbar ul{
+
+    flex-wrap:wrap;
+
+    justify-content:center;
+
+}
+
+.cards{
+
+    grid-template-columns:1fr;
+
+}
+
+table{
+
+    display:block;
+
+    overflow-x:auto;
+
+}
+
+}
+
+@media(max-width:600px){
+
+.container{
+
+    width:98%;
+
+}
+
+form{
+
+    padding:20px;
+
+}
+
+.hero{
+
+    padding:30px;
+
+}
+
+.hero h1{
+
+    font-size:28px;
+
+}
+
+.hero p{
+
+    font-size:16px;
+
+}
+
+}

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/laboratoriolistar.css">
+</head>
+
+<body>
+<div class="laboratorios-page">
+
+    <div class="top-bar">
+        <h1>Laboratórios</h1>
+
+        <a href="/laboratorios/novo" class="btn-novo">
+            + Novo Laboratório
+        </a>
+    </div>
+
+    <div class="tabela-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Entrada</th>
+                    <th>Saída</th>
+                    <th>Dias disponíveis</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {{#each laboratorios}}
+                <tr>
+                    <td>{{IdLab}}</td>
+
+                    <td class="nome-lab">
+                        {{NomeLab}}
+                    </td>
+
+                    <td>{{HoraEntrada}}</td>
+
+                    <td>{{HoraSaida}}</td>
+
+                    <td>
+                        {{#if DiasDispos}}
+                            <div class="dias">
+                                {{#each DiasDispos}}
+                                    <span class="dia">
+                                        {{NomeDia}}
+                                    </span>
+                                {{/each}}
+                            </div>
+                        {{else}}
+                            <span class="sem-dias">
+                                Nenhum dia cadastrado
+                            </span>
+                        {{/if}}
+                    </td>
+
+                    <td class="acoes">
+                        <a href="/laboratorios/editar/{{IdLab}}" class="btn-editar">
+                            Editar
+                        </a>
+
+                        <a href="/laboratorios/excluir/{{IdLab}}" class="btn-excluir">
+                            Excluir
+                        </a>
+                    </td>
+                </tr>
+                {{else}}
+                <tr>
+                    <td colspan="6" class="sem-registros">
+                        Nenhum laboratório cadastrado.
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+
+</div>
+```
+
+</body>
+
+</html>

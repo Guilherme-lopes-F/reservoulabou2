@@ -1,0 +1,67 @@
+.cards{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+    gap:20px;
+
+}
+
+.card{
+
+    background:white;
+
+    padding:25px;
+
+    border-radius:10px;
+
+    box-shadow:0 3px 10px rgba(0,0,0,.08);
+
+    transition:.3s;
+
+}
+
+.card:hover{
+
+    transform:translateY(-5px);
+
+}
+
+.card h3{
+
+    color:#1565c0;
+
+    margin-bottom:15px;
+
+}
+
+.card p{
+
+    font-size:35px;
+
+    font-weight:bold;
+
+}
+
+.hero{
+
+    text-align:center;
+
+    padding:80px;
+
+}
+
+.hero h1{
+
+    font-size:40px;
+
+}
+
+.hero p{
+
+    margin:20px 0;
+
+    font-size:20px;
+
+}

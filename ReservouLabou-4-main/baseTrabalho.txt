@@ -1,0 +1,26 @@
+Reservou-Labou/
+│
+├── server.js
+├── package.json
+├── .env.example
+├── .gitignore
+├── README.md
+│
+├── config/
+│     database.js
+│
+├── public/
+│     css/
+│     js/
+│     img/
+│
+├── routes/
+│
+├── controllers/
+│
+├── middlewares/
+│
+├── models/
+│
+└── views/
+      layouts/

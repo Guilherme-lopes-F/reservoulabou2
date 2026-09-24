@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Novo Equipamento</h1>
+
+    <form action="/equipamentos/novo" method="POST">
+
+        <label>
+
+            Nome
+
+        </label>
+
+        <input type="text" name="NomeEquip" required>
+
+        <label>
+
+            Quantidade
+
+        </label>
+
+        <input type="number" name="Quantidade" required>
+
+        <label>
+
+            Durabilidade
+
+        </label>
+
+        <input type="text" name="Durabilidade">
+
+        <label>
+
+            Hora Entrada
+
+        </label>
+
+        <input type="time" name="HoraEntrada" required>
+
+        <label>
+
+            Hora Saída
+
+        </label>
+
+        <input type="time" name="HoraSaida" required>
+
+        <button>
+
+            Salvar
+
+        </button>
+
+    </form>
+</body>
+
+</html>

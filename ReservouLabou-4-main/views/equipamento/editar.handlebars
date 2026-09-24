@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Editar Equipamento</h1>
+
+<form action="/equipamentos/editar/{{equipamento.IdEquip}}" method="POST">
+
+    <input type="text" name="NomeEquip" value="{{equipamento.NomeEquip}}" required>
+
+    <input type="number" name="Quantidade" value="{{equipamento.Quantidade}}" required>
+
+    <input type="text" name="Durabilidade" value="{{equipamento.Durabilidade}}">
+
+    <input type="time" name="HoraEntrada" value="{{equipamento.HoraEntrada}}" required>
+
+    <input type="time" name="HoraSaida" value="{{equipamento.HoraSaida}}" required>
+
+    <button>
+
+        Atualizar
+
+    </button>
+
+</form>
+</body>
+</html>
