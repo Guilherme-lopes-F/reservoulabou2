@@ -1,73 +1,82 @@
-<h1>Reservas de Equipamentos</h1>
+<!DOCTYPE html>
+<html lang="en">
 
-<a
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/listarEquipamento.css">
+</head>
 
-href="/reservas/equipamentos/novo"
+<body>
+    <h1>Reservas de Equipamentos</h1>
 
-class="btn"
+    <a href="/reservas/equipamentos/novo" class="btn">
 
->
+        Nova Reserva
 
-Nova Reserva
+    </a>
 
-</a>
+    <table>
 
-<table>
+        <thead>
 
-<thead>
+            <tr>
 
-<tr>
+                <th>Usuário</th>
 
-<th>Usuário</th>
+                <th>Data</th>
 
-<th>Data</th>
+                <th>Entrada</th>
 
-<th>Entrada</th>
+                <th>Saída</th>
 
-<th>Saída</th>
+                <th>Ações</th>
 
-<th>Ações</th>
+            </tr>
 
-</tr>
+        </thead>
 
-</thead>
+        <tbody>
 
-<tbody>
+            {{#each reservas}}
 
-{{#each reservas}}
+            <tr>
 
-<tr>
+                <td>{{Usuario.Login}}</td>
 
-<td>{{Usuario.Login}}</td>
+                <td>{{DataReserva}}</td>
 
-<td>{{DataReserva}}</td>
+                <td>{{HoraEntrada}}</td>
 
-<td>{{HoraEntrada}}</td>
+                <td>{{HoraSaida}}</td>
 
-<td>{{HoraSaida}}</td>
+                <td>
 
-<td>
+                    <a href="/reservas/equipamentos/editar/{{IdReservaEquip}}">
 
-<a href="/reservas/equipamentos/editar/{{IdReservaEquip}}">
+                        Editar
 
-Editar
+                    </a>
 
-</a>
+                    |
 
-|
+                    <a href="/reservas/equipamentos/excluir/{{IdReservaEquip}}">
 
-<a href="/reservas/equipamentos/excluir/{{IdReservaEquip}}">
+                        Excluir
 
-Excluir
+                    </a>
 
-</a>
+                </td>
 
-</td>
+            </tr>
 
-</tr>
+            {{/each}}
 
-{{/each}}
+        </tbody>
 
-</tbody>
+    </table>
 
-</table>
+</body>
+
+</html>

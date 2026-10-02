@@ -1,0 +1,131 @@
+body {
+background-color: rgb(184, 183, 183);
+margin: 0;
+min-height: 100vh;
+font-family: Arial, sans-serif;
+}
+
+h1 {
+color: #111111;
+text-align: center;
+margin-top: 40px;
+font-size: clamp(28px, 3vw, 38px);
+font-weight: 500;
+}
+
+/* Botão Nova Reserva */
+.btn {
+display: block;
+
+
+width: 150px;
+padding: 12px 0;
+
+margin: 30px auto;
+
+background-color: #4e97d1;
+color: white;
+
+text-align: center;
+text-decoration: none;
+
+border-radius: 10px;
+
+font-weight: bold;
+
+box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 10px;
+
+transition: 0.3s ease;
+
+
+}
+
+.btn:hover {
+background-color: #3f87c0;
+transform: translateY(-3px);
+}
+
+/* Tabela */
+table {
+width: 85%;
+margin: 30px auto;
+
+  
+border-collapse: separate;
+border-spacing: 0;
+
+background-color: white;
+
+border-radius: 15px;
+overflow: hidden;
+
+box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 15px;
+  
+
+}
+
+/* Cabeçalho */
+thead {
+background-color: #4e97d1;
+}
+
+th {
+color: white;
+
+  
+padding: 15px;
+
+font-size: 16px;
+font-weight: bold;
+
+text-align: center;
+  
+
+}
+
+/* Células */
+td {
+padding: 14px;
+
+  
+text-align: center;
+
+color: #222222;
+
+border-bottom: 1px solid #dddddd;
+  
+
+}
+
+/* Linhas */
+tbody tr {
+transition: 0.2s ease;
+}
+
+tbody tr:hover {
+background-color: #eeeeee;
+}
+
+/* Links de ação */
+td a {
+color: #4e97d1;
+
+  
+text-decoration: none;
+
+font-weight: bold;
+
+transition: 0.2s ease;
+  
+
+}
+
+td a:hover {
+color: #2f7fba;
+text-decoration: underline;
+}
+
+
+tbody tr:last-child td {
+border-bottom: none;
+}

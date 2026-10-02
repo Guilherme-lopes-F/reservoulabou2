@@ -1,113 +1,78 @@
-<h1>Nova Reserva de Equipamentos</h1>
+<!DOCTYPE html>
+<html lang="en">
 
-<form
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/cadastrarEquipamento.css">
+</head>
 
-action="/reservas/equipamentos/novo"
+<body>
+    <h1>Nova Reserva de Equipamentos</h1>
 
-method="POST"
+    <form action="/reservas/equipamentos/novo" method="POST">
 
->
+        <label>
 
-<label>
+            Data
 
-Data
+        </label>
 
-</label>
+        <input type="date" name="DataReserva" required>
 
-<input
+        <label>
 
-type="date"
+            Hora Entrada
 
-name="DataReserva"
+        </label>
 
-required
+        <input type="time" name="HoraEntrada" required>
 
->
+        <label>
 
-<label>
+            Hora Saída
 
-Hora Entrada
+        </label>
 
-</label>
+        <input type="time" name="HoraSaida" required>
 
-<input
+        <hr>
 
-type="time"
+        {{#each equipamentos}}
 
-name="HoraEntrada"
+        <div class="equipamento">
 
-required
+            <h3>
 
->
+                {{NomeEquip}}
 
-<label>
+            </h3>
 
-Hora Saída
+            <input type="hidden" name="equipamentos[{{@index}}][IdEquip]" value="{{IdEquip}}">
 
-</label>
+            <label>
 
-<input
+                Quantidade
 
-type="time"
+            </label>
 
-name="HoraSaida"
+            <input type="number" min="0" max="{{Quantidade}}" name="equipamentos[{{@index}}][Quantidade]" value="0">
 
-required
+        </div>
 
->
+        {{/each}}
 
-<hr>
+        <button>
 
-{{#each equipamentos}}
+            Reservar
 
-<div class="equipamento">
+        </button>
 
-<h3>
+    </form>
 
-{{NomeEquip}}
+    <script src="/js/reservaEquipamento.js"></script>
 
-</h3>
+</body>
 
-<input
-
-type="hidden"
-
-name="equipamentos[{{@index}}][IdEquip]"
-
-value="{{IdEquip}}"
-
->
-
-<label>
-
-Quantidade
-
-</label>
-
-<input
-
-type="number"
-
-min="0"
-
-max="{{Quantidade}}"
-
-name="equipamentos[{{@index}}][Quantidade]"
-
-value="0"
-
->
-
-</div>
-
-{{/each}}
-
-<button>
-
-Reservar
-
-</button>
-
-</form>
-
-<script src="/js/reservaEquipamento.js"></script>
+</html>

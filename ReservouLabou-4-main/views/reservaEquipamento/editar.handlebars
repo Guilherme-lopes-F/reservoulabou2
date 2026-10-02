@@ -1,91 +1,52 @@
-<h1>Editar Reserva</h1>
+<!DOCTYPE html>
+<html lang="en">
 
-<form
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/public/css/editarEquipamento.css">
+</head>
 
-action="/reservas/equipamentos/editar/{{reserva.IdReservaEquip}}"
+<body>
+    <h1>Editar Reserva</h1>
 
-method="POST"
+    <form action="/reservas/equipamentos/editar/{{reserva.IdReservaEquip}}" method="POST">
 
->
+        <input type="date" name="DataReserva" value="{{reserva.DataReserva}}" required>
 
-<input
+        <input type="time" name="HoraEntrada" value="{{reserva.HoraEntrada}}" required>
 
-type="date"
+        <input type="time" name="HoraSaida" value="{{reserva.HoraSaida}}" required>
 
-name="DataReserva"
+        <hr>
 
-value="{{reserva.DataReserva}}"
+        {{#each equipamentos}}
 
-required
+        <div class="equipamento">
 
->
+            <h3>
 
-<input
+                {{NomeEquip}}
 
-type="time"
+            </h3>
 
-name="HoraEntrada"
+            <input type="hidden" name="equipamentos[{{@index}}][IdEquip]" value="{{IdEquip}}">
 
-value="{{reserva.HoraEntrada}}"
+            <input type="number" min="0" name="equipamentos[{{@index}}][Quantidade]" value="0">
 
-required
+        </div>
 
->
+        {{/each}}
 
-<input
+        <button>
 
-type="time"
+            Atualizar
 
-name="HoraSaida"
+        </button>
 
-value="{{reserva.HoraSaida}}"
+    </form>
 
-required
+</body>
 
->
-
-<hr>
-
-{{#each equipamentos}}
-
-<div class="equipamento">
-
-<h3>
-
-{{NomeEquip}}
-
-</h3>
-
-<input
-
-type="hidden"
-
-name="equipamentos[{{@index}}][IdEquip]"
-
-value="{{IdEquip}}"
-
->
-
-<input
-
-type="number"
-
-min="0"
-
-name="equipamentos[{{@index}}][Quantidade]"
-
-value="0"
-
->
-
-</div>
-
-{{/each}}
-
-<button>
-
-Atualizar
-
-</button>
-
-</form>
+</html>
