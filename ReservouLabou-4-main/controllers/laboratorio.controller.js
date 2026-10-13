@@ -44,6 +44,158 @@ class LaboratorioController {
        API JSON
     ========================== */
 
+     /* ==========================
+       LISTAGEM ADMINISTRATIVA
+    ========================== */
+
+    
+static async listarAdmin(req, res) {
+    const laboratorios = await Laboratorio.findAll({
+        include: [DiasDispo]
+    });
+
+    const laboratoriosFormatados = laboratorios.map(laboratorio =>
+        laboratorio.toJSON()
+    );
+
+    res.render("admin/laboratorios/listarLab", {
+        laboratorios: laboratoriosFormatados
+    });
+}
+
+    /* ==========================
+       FORMULÁRIO ADMINISTRATIVO
+    ========================== */
+
+    static cadastroPageAdmin(req, res) {
+        res.render("admin/laboratorios/cadastrarLab");
+    }
+
+    static async editarPageAdmin(req, res) {
+        const laboratorio = await Laboratorio.findByPk(
+            req.params.id
+        );
+
+        if (!laboratorio) {
+            return res.status(404).send(
+                "Laboratório não encontrado."
+            );
+        }
+
+        res.render("admin/laboratorios/editarLab", {
+            laboratorio
+        });
+    }
+
+    
+    /* ==========================
+       CADASTRAR ADMIN
+    ========================== */
+
+    static async cadastrarAdmin(req, res) {
+        try {
+            const { NomeLab, HoraEntrada, HoraSaida } = req.body;
+
+            if (!NomeLab || !HoraEntrada || !HoraSaida) {
+                return res.status(400).send(
+                    "Todos os campos são obrigatórios."
+                );
+            }
+
+            if (HoraEntrada >= HoraSaida) {
+                return res.status(400).send(
+                    "A hora de entrada deve ser anterior à hora de saída."
+                );
+            }
+
+            const existe = await Laboratorio.findOne({
+                where: { NomeLab }
+            });
+
+            if (existe) {
+                return res.status(400).send(
+                    "Já existe um laboratório com esse nome."
+                );
+            }
+
+            await Laboratorio.create({
+                NomeLab,
+                HoraEntrada,
+                HoraSaida
+            });
+
+            res.redirect("/admin/laboratorios");
+        } catch (erro) {
+            console.log(erro);
+            res.status(500).send("Erro ao cadastrar laboratório.");
+        }
+    }
+
+    /* ==========================
+       EDITAR ADMIN
+    ========================== */
+
+    static async editarAdmin(req, res) {
+        try {
+            const laboratorio = await Laboratorio.findByPk(req.params.id);
+
+            if (!laboratorio) {
+                return res.status(404).send(
+                    "Laboratório não encontrado."
+                );
+            }
+
+            const { NomeLab, HoraEntrada, HoraSaida } = req.body;
+
+            if (!NomeLab || !HoraEntrada || !HoraSaida) {
+                return res.status(400).send(
+                    "Todos os campos são obrigatórios."
+                );
+            }
+
+            if (HoraEntrada >= HoraSaida) {
+                return res.status(400).send(
+                    "A hora de entrada deve ser anterior à hora de saída."
+                );
+            }
+
+            await laboratorio.update({
+                NomeLab,
+                HoraEntrada,
+                HoraSaida
+            });
+
+            res.redirect("/admin/laboratorios");
+        } catch (erro) {
+            console.log(erro);
+            res.status(500).send("Erro ao editar laboratório.");
+        }
+    }
+
+    /* ==========================
+       EXCLUIR ADMIN
+    ========================== */
+
+    static async excluirAdmin(req, res) {
+        try {
+            const laboratorio = await Laboratorio.findByPk(req.params.id);
+
+            if (!laboratorio) {
+                return res.status(404).send(
+                    "Laboratório não encontrado."
+                );
+            }
+
+            await laboratorio.destroy();
+
+            res.redirect("/admin/laboratorios");
+        } catch (erro) {
+            console.log(erro);
+            res.status(500).send("Erro ao excluir laboratório.");
+        }
+    }
+
+
     static async apiListar(req, res) {
 
         const laboratorios =

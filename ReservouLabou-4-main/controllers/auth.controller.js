@@ -58,13 +58,18 @@ class AuthController {
 
             console.log("--> SUCESSO! Login correto. Redirecionando...");
 
+           
             req.session.usuario = {
                 id: usuario.IdUser,
                 login: usuario.Login,
                 admin: usuario.StatusADM
             };
 
-            res.redirect("/");
+            if (usuario.StatusADM) {
+                return res.redirect("/admin");
+            }
+
+            return res.redirect("/");
 
         } catch (erro) {
             console.log("--> ERRO NO CATCH:", erro);
@@ -81,7 +86,7 @@ class AuthController {
         try {
 
             // Alterado também no cadastro para 'Login' e 'Senha'
-            const { Login, Senha } = req.body;
+            const { Login, Senha, ChaveADM } = req.body;
 
             if (!Login || !Senha) {
 
@@ -124,6 +129,12 @@ class AuthController {
                     10
 
                 );
+            const chaveConfigurada = process.env.CHAVE_ADMIN;
+
+            const ehAdmin =
+                Boolean(chaveConfigurada) &&
+                Boolean(ChaveADM) &&
+                ChaveADM === chaveConfigurada;
 
             await Usuario.create({
 
@@ -131,7 +142,7 @@ class AuthController {
 
                 Senha: hash,
 
-                StatusADM: false
+                StatusADM: ehAdmin
 
             });
 

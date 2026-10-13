@@ -12,6 +12,11 @@ router.use(
 );
 
 router.use(
+    "/admin/laboratorios",
+    require("./adminLaboratorio.routes")
+);
+
+router.use(
     "/equipamentos",
     require("./equipamento.routes")
 );
@@ -31,11 +36,30 @@ router.use(
     require("./historico.routes")
 );
 
+// HOME DO ADMINISTRADOR
+router.get("/admin", (req, res) => {
+    if (!req.session.usuario) {
+        return res.redirect("/auth/login");
+    }
+
+    if (!req.session.usuario.admin) {
+        return res.redirect("/");
+    }
+
+    res.render("admin/adminHome");
+});
+
+// HOME GERAL
 router.get("/", (req, res) => {
     if (!req.session.usuario) {
         return res.redirect("/auth/login");
     }
 
+    if (req.session.usuario.admin) {
+        return res.redirect("/admin");
+    }
+
     res.render("home/home");
 });
+
 module.exports = router;

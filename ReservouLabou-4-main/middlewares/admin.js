@@ -6,7 +6,7 @@ module.exports = (req, res, next) => {
 
     }
 
-    if (!req.session.usuario.StatusADM) {
+    if (!req.session.usuario.admin) {
 
         return res.status(403).render(
 

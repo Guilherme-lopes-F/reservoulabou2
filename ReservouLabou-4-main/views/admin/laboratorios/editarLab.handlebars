@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Laboratório</title>
+    <link rel="stylesheet" href="/css/laboratoriocadastrar.css">
+</head>
+
+<body>
+    <h1>Editar Laboratório</h1>
+
+    <form action="/admin/laboratorios/editar/{{laboratorio.IdLab}}" method="POST">
+
+        <label for="NomeLab">Nome</label>
+        <input
+            type="text"
+            id="NomeLab"
+            name="NomeLab"
+            value="{{laboratorio.NomeLab}}"
+            maxlength="30"
+            required>
+
+        <label for="HoraEntrada">Hora de Entrada</label>
+        <input
+            type="time"
+            id="HoraEntrada"
+            name="HoraEntrada"
+            value="{{laboratorio.HoraEntrada}}"
+            required>
+
+        <label for="HoraSaida">Hora de Saída</label>
+        <input
+            type="time"
+            id="HoraSaida"
+            name="HoraSaida"
+            value="{{laboratorio.HoraSaida}}"
+            required>
+
+        <button type="submit">
+            Salvar Alterações
+        </button>
+
+        <a href="/admin/laboratorios">
+            Cancelar
+        </a>
+
+    </form>
+</body>
+
+</html>
