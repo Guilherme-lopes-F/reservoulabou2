@@ -1,5 +1,6 @@
 const bcrypt = require("bcrypt");
 const { Usuario } = require("../models");
+const jwt = require("jsonwebtoken");
 
 class AuthController {
 
@@ -198,6 +199,98 @@ class AuthController {
 
         res.json(usuarios);
 
+    }
+    /* ==========================
+       API CADASTRO (PARA O REACT NATIVE)
+    ========================== */
+
+    static async apiCadastrar(req, res) {
+        try {
+            const { Login, Senha, ChaveADM } = req.body;
+
+            if (!Login || !Senha) {
+                return res.status(400).json({ erro: "Todos os campos são obrigatórios." });
+            }
+
+            const existe = await Usuario.findOne({ where: { Login } });
+
+            if (existe) {
+                return res.status(400).json({ erro: "Login já existente." });
+            }
+
+            const hash = await bcrypt.hash(Senha, 10);
+            const chaveConfigurada = process.env.CHAVE_ADMIN;
+
+            const ehAdmin =
+                Boolean(chaveConfigurada) &&
+                Boolean(ChaveADM) &&
+                ChaveADM === chaveConfigurada;
+
+            const novoUsuario = await Usuario.create({
+                Login: Login,
+                Senha: hash,
+                StatusADM: ehAdmin
+            });
+
+            return res.status(201).json({
+                mensagem: "Usuário cadastrado com sucesso!",
+                usuario: {
+                    id: novoUsuario.IdUser,
+                    login: novoUsuario.Login,
+                    admin: novoUsuario.StatusADM
+                }
+            });
+
+        } catch (erro) {
+            console.log("--> ERRO NA API CADASTRO:", erro);
+            res.status(500).json({ erro: "Erro interno no servidor." });
+        }
+    }
+
+        /* ==========================
+       API Login(PARA O REACT NATIVE)
+    ========================== */
+    static async apiLogin(req, res) {
+        try {
+            const { Login, Senha } = req.body;
+
+            if (!Login || !Senha) {
+                return res.status(400).json({ erro: "Preencha todos os campos." });
+            }
+
+            const usuario = await Usuario.findOne({ where: { Login } });
+
+            if (!usuario) {
+                return res.status(401).json({ erro: "Usuário não encontrado." });
+            }
+
+            const senhaCorreta = await bcrypt.compare(Senha, usuario.Senha);
+
+            if (!senhaCorreta) {
+                return res.status(401).json({ erro: "Senha incorreta." });
+            }
+
+            // Gera o Token JWT válido por 7 dias
+            const token = jwt.sign(
+                { id: usuario.IdUser, login: usuario.Login, admin: usuario.StatusADM },
+                process.env.JWT_SECRET || "sua_chave_secreta_jwt_aqui",
+                { expiresIn: "7d" }
+            );
+
+            return res.json({
+                mensagem: "Login realizado com sucesso!",
+                token,
+                usuario: {
+                    id: usuario.IdUser,
+                    login: usuario.Login,
+                    admin: usuario.StatusADM
+                }
+            });
+
+        } catch (erro) {
+            console.log("--> ERRO NA API LOGIN:", erro);
+            res.status(500).json({ erro: "Erro interno no servidor." });
+        }
     }
 
 }
