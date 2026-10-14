@@ -62,4 +62,8 @@ router.get("/", (req, res) => {
     res.render("home/home");
 });
 
+//mobile//
+
+router.use("/api", require("./api.routes"));
+
 module.exports = router;
