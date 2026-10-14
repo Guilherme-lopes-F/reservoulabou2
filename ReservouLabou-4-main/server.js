@@ -5,6 +5,7 @@ console.log("DB_HOST:", process.env.DB_HOST);
 console.log("DB_PASSWORD:", process.env.DB_PASSWORD ? "TEM SENHA" : "VAZIA");
 
 const express = require("express");
+const cors = require("cors");
 const session = require("express-session");
 const flash = require("connect-flash");
 const path = require("path");
@@ -18,16 +19,17 @@ const routes = require("./routes");
 const errorHandler = require("./middlewares/errorHandler");
 
 const app = express();
+app.use(cors());
 
 /* ======================================================
    CONFIGURAÇÕES
 ====================================================== */
 
 app.use(express.urlencoded({
-
     extended: true
-
 }));
+
+app.use(express.json());
 
 app.use(express.json());
 
